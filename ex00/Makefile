@@ -27,7 +27,27 @@ $(NAME): $(SRC) Makefile
 clean:
 
 fclean: clean
-	rm -f $(NAME)
+	@if [ -f $(NAME) ]; then \
+		make clean-files --no-print-directory; \
+	else \
+		make no-files --no-print-directory; \
+	fi
+
+clean-files:
+	@echo "\n$(YELLOW)	Removing $(NAME)...$(RESET)"
+	@rm -f $(NAME) $(LIBFT)
+	@echo "\n$(GREEN)"
+	@echo "	===================	"
+	@echo "	 All files removed	"
+	@echo "	===================	"
+	@echo "\n$(RESET)"
+
+no-files:
+	@echo "\n$(RED)"
+	@echo "	=====================    "
+	@echo "	 No files to remove. "
+	@echo "	=====================    "
+	@echo "\n$(RESET)"
 
 re: fclean all
 
