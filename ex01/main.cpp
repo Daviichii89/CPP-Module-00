@@ -1,11 +1,10 @@
 #include "Phonebook.hpp"
-#include <iostream>
 
 void displayMenu() {
-    std::cout << "Phonebook" << std::endl;
-    std::cout << "1. Add a new contact" << std::endl;
-    std::cout << "2. Search a contact" << std::endl;
-    std::cout << "3. Exit" << std::endl;
+    std::cout << "Phonebook\n" << std::endl;
+    std::cout << "ADD - add a new contact" << std::endl;
+    std::cout << "SEARCH - show the list of contacts" << std::endl;
+    std::cout << "EXIT - exit the program\n" << std::endl;
     std::cout << "Choose an option: ";
 }
 
@@ -13,52 +12,31 @@ int main()
 {
     PhoneBook phonebook;
     
-    int command;
+    std::string command;
     while (true) {
         std::system("clear");
         displayMenu();
         std::cin >> command;
-
-        if ((command < 1 || command > 4) && std::cin.fail()) {
-            std::cin.clear();
-            std::cout << "❌ Invalid command. Please enter a number between 1 and 4." << std::endl;
-            continue;
+        
+        std::system("clear");
+        if (command == "ADD") {
+            std::string firstName, lastName, phone;
+            phonebook.addContact(firstName, lastName, phone);
+        } else if (command == "SEARCH") phonebook.displayContacts();
+        else if (command == "EXIT") {
+            std::cout << "Exiting..." << std::endl; 
+            break;
         }
-
-        switch (command) {
-            case 1: {
-                std::system("clear");
-                std::string firstName, lastName, phone;
-                std::cout << "Enter first name: ";
-                std::cin >> firstName;
-                std::cout << "Enter last name: ";
-                std::cin >> lastName;
-                std::cout << "Enter phone number: ";
-                std::cin >> phone;
-                phonebook.addContact(firstName, lastName, phone);
-                std::cout << "Contact added successfully!" << std::endl;
-                std::system("clear");
-                break;
-            }
-            case 2: {
-                std::system("clear");
-                phonebook.displayContacts();
-                int index;
-                std::cout << "Enter the index of the contact: ";
-                std::cin >> index;
-                phonebook.displayContactDetails(index);
-                break;
-            }
-            case 3: {
-                std::cout << "Exiting..." << std::endl;
-                break;
-            }
-            default:
-                std::cout << "❌ Invalid command. Please enter a number between 1 and 3." << std::endl;
-                break;
+        else {
+            std::cout << "\n❌ Invalid command. Please enter ADD, SEARCH or EXIT.\n" << std::endl;
+            std::cout << "Press enter to continue...";
+            std::cin.ignore();
+            std::cin.get();
         }
     }
-    std::cout << "Goodbye!" << std::endl;
+    std::cout << "\nGoodbye!" << std::endl;
+    sleep(2);
     std::cin.clear();
+    std::system("clear");
     return 0;
 }

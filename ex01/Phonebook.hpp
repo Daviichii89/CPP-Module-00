@@ -2,6 +2,7 @@
 #define PHONEBOOK_HPP
 
 #include "Contact.hpp"
+#include <unistd.h>
 
 class PhoneBook {
 private:

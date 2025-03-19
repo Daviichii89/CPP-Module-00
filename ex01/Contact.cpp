@@ -15,5 +15,5 @@ void Contact::displayContact() const {
 }
 
 std::string Contact::getSummary() const {
-    return firstName + " | " + lastName;
+    return firstName + " " + lastName;
 }
