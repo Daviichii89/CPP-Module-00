@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <string>
+#include <unistd.h>
+#include <cstdlib>
 
 class Contact {
 private:

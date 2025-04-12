@@ -2,12 +2,14 @@
 #define PHONEBOOK_HPP
 
 #include "Contact.hpp"
+#include <iostream>
+#include <string>
 #include <unistd.h>
+#include <cstdlib>
 
 class PhoneBook {
 private:
     Contact contacts[8];
-    int contactCount;
 
 public:
     PhoneBook();

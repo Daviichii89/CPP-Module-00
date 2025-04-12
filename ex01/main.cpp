@@ -19,6 +19,8 @@ int main()
         std::cin >> command;
         
         std::system("clear");
+        if (std::cin.eof())
+            break;
         if (command == "ADD") {
             std::string firstName, lastName, phone;
             phonebook.addContact(firstName, lastName, phone);
