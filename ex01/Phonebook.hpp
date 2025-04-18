@@ -14,9 +14,9 @@ private:
 
 public:
     PhoneBook();
-    void addContact(std::string firstName, std::string lastName, std::string phone);
-    void displayContacts() const;
-    void displayContactDetails(int index) const;
+    void addContact(std::string firstName, std::string lastName, std::string phone, std::string nickname, std::string darkestSecret);
+    void displayContacts();
+    void displayContactDetails(int index);
 };
 
 #endif
