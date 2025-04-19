@@ -1,4 +1,5 @@
 #include "Contact.hpp"
+#include "Utils.hpp"
 
 Contact::Contact() {}
 
@@ -10,13 +11,20 @@ void Contact::setContact(std::string fName, std::string lName, std::string phone
     darkestSecret = secret;
 }
 
-void Contact::displayContact() const {
-    std::cout << "First Name: " << firstName << std::endl;
-    std::cout << "Last Name: " << lastName << std::endl;
-    std::cout << "Phone Number: " << phoneNumber << std::endl;
-    std::cout << "Nickname: " << nickname << std::endl;
+void Contact::displayContact() {
+    std::cout << "First Name: " << firstName << std::endl
+              << "Last Name: " << lastName << std::endl
+              << "Phone Number: " << phoneNumber << std::endl
+              << "Nickname: " << nickname << std::endl
+              << "Darkest Secret: " << darkestSecret << std::endl;
 }
 
-std::string Contact::getSummary() const {
-    return firstName + " " + lastName;
+void Contact::getSummary(int index, int width) {
+    int newIndex = index + 1;
+    std::cout << "|"
+              << std::setw(width) << newIndex << "|"
+              << std::setw(width) << substringField(firstName) << "|"
+              << std::setw(width) << substringField(lastName) << "|"
+              << std::setw(width) << substringField(nickname) << "|"
+              << std::endl;
 }

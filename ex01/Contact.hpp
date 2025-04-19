@@ -5,6 +5,7 @@
 #include <string>
 #include <unistd.h>
 #include <cstdlib>
+#include <iomanip>
 
 class Contact {
     private:
@@ -17,8 +18,8 @@ class Contact {
     public:
         Contact();
         void setContact(std::string fName, std::string lName, std::string phone, std::string nick, std::string secret);
-        void displayContact() const;
-        std::string getSummary() const;
+        void displayContact();
+        void getSummary(int i, int width);
 };
 
 #endif

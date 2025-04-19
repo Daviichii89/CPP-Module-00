@@ -11,7 +11,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 DFLAGS = -fsanitize=address
 
-SRC = Phonebook.cpp Contact.cpp main.cpp
+SRC = Contact.cpp Phonebook.cpp Utils.cpp main.cpp 
 
 all: $(NAME)
 

@@ -2,58 +2,15 @@
 
 PhoneBook::PhoneBook() : contactCount(0) {}
 
-int isDigitsOnly(const std::string& str) {
-    for (size_t i = 0; i < str.length(); ++i) {
-        if (!isdigit(str[i]))
-            return 0;
-    }
-    return 1;
-}
-
 void PhoneBook::addContact(std::string firstName, std::string lastName, std::string phone, std::string nickname, std::string darkestSecret) {
 
     std::cout << "Add a new contact" << std::endl;
     std::cout << "-----------------\n" << std::endl;
-    std::cout << "Enter firstname: ";
-    std::getline(std::cin, firstName);
-    if (std::cin.eof())
-        return;
-    while (firstName.empty()) {
-        std::cout << "❌ Firstname cannot be empty. Try again: ";
-        std::getline(std::cin, firstName);
-    }
-    std::cout << "Enter lastname: ";
-    std::getline(std::cin, lastName);
-    if (std::cin.eof())
-        return;
-    while (lastName.empty()) {
-        std::cout << "❌ Lastname cannot be empty. Try again: ";
-        std::getline(std::cin, lastName);
-    }
-    std::cout << "Enter phone number: ";
-    std::getline(std::cin, phone);
-    if (std::cin.eof())
-        return;
-    while (phone.empty() || !isDigitsOnly(phone)) {
-        std::cout << "❌ Phone must contain only digits and not be empty. Try again: ";
-        std::getline(std::cin, phone);
-    }
-    std::cout << "Enter nickname: ";
-    std::getline(std::cin, nickname);
-    if (std::cin.eof())
-        return;
-    while (nickname.empty()) {
-        std::cout << "❌ Nickname cannot be empty. Try again: ";
-        std::getline(std::cin, nickname);
-    }
-    std::cout << "Enter darkest secret: ";
-    std::getline(std::cin, darkestSecret);
-    if (std::cin.eof())
-        return;
-    while (darkestSecret.empty()) {
-        std::cout << "❌ Darkest secret cannot be empty. Try again: ";
-        std::getline(std::cin, darkestSecret);
-    }
+    readAndFill("Enter firstname: ", firstName);
+    readAndFill("Enter lastname: ", lastName);
+    readAndFill("Enter phone number: ", phone, true);
+    readAndFill("Enter nickname: ", nickname);
+    readAndFill("Enter darkest secret: ", darkestSecret);
     static int index;
     if (contactCount < 8)
         contactCount++;
@@ -75,10 +32,15 @@ void PhoneBook::displayContacts() {
     }
     std::cout << "Contacts" << std::endl;
     std::cout << "--------\n" << std::endl;
-    std::cout << "Nº | Name" << std::endl;
-    std::cout << "---------" << std::endl;
+    std::cout << "|"
+              << std::setw(10) << "Index" << "|"
+              << std::setw(10) << "FirstName" << "|"
+              << std::setw(10) << "LastName" << "|"
+              << std::setw(10) << "Nickname" << "|"
+              << std::endl;
+    std::cout << "--------------------------------------------" << std::endl;
     for (int i = 0; i < count; i++) 
-        std::cout << i + 1 << "  | " << contacts[i].getSummary() << std::endl;
+        contacts[i].getSummary(i, 10);
 
     std::cout << "\n\nSelect a contact: ";
     
